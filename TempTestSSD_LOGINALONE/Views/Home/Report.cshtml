@@ -1,0 +1,51 @@
+﻿@using TempTestSSD_LOGINALONE.Models
+@using System.Linq;
+
+<h1>Report</h1>
+<h2>There was @Model.Counter Vulnerabilities found:</h2>
+<br/>
+<table class="table">
+    <tr>
+        <th>Line</th>
+        <th>Vulnerabilitie</th>
+    </tr>
+    @foreach (KeyValuePair<string, string> Vunrabilitie in Model.OutputDictionary)
+    {
+        <tr>
+            <td>
+                @Html.Raw(Vunrabilitie.Key)
+            </td>
+            <td>
+                @Vunrabilitie.Value
+            </td>
+        </tr>
+    }
+</table>
+<br />
+<br />
+<h2>
+    This document has a
+
+    @{
+
+        if (Model.Counter <= 3)
+        {
+            @:<span style="color: #00ff21">Low</span>
+        }
+        else if (Model.Counter < 10 && Model.Counter > 3)
+        {
+            @:<span style="color: #ff6a00">Medium</span>
+        }
+        else if (Model.Counter >= 10)
+        {
+            @:<span style="color: #FF0000">High</span>
+        }
+    }
+    risk
+
+
+
+</h2>
+
+
+

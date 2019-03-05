@@ -1,0 +1,57 @@
+﻿@model TempTestSSD_LOGINALONE.Models.Upload
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<link rel="stylesheet" href="https://codemirror.net/lib/codemirror.css">
+<script src="https://codemirror.net/lib/codemirror.js"></script>
+<script src="https://codemirror.net/addon/edit/matchbrackets.js"></script>
+<script src="https://codemirror.net/addon/edit/continuecomment.js"></script>
+<script src="https://codemirror.net/mode/javascript/javascript.js"></script>
+
+<h1>C# Vulnerability Finder</h1>
+<br />
+<p>
+    This site can be used to find some of the most common security vulnerabilities within your submitted source code.<br />
+
+    Feel free to upload a .cs file below containing your code or to paste a code snippet in the formatted text box then hit submit.<br />
+
+    The code will be searched for known vulnerabilities and you will be shown a report of any that are found.
+</p>
+<br />
+<br />
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Retreive" enctype="multipart/form-data" asp-controller="Home">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="codeFile" class="control-label"></label>
+                <input asp-for="codeFile" type="file" class="form-control" />
+                <span asp-validation-for="codeFile" class="text-danger"></span>
+            </div>
+            <br />
+            <h4>OR</h4>
+            <br />
+            <div class="form-group">
+                <label asp-for="codeSnippet" class="control-label"></label>
+                <textarea asp-for="codeSnippet" type="text" class="form-control lined" rows="13" id="codesnippet_editable"></textarea>
+                <span asp-validation-for="codeSnippet" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    var editableCodeMirror = CodeMirror.fromTextArea(document.getElementById('codesnippet_editable'), {
+        mode: "javascript",
+        theme: "default",
+        lineNumbers: true
+    });
+</script>
+
+
+
+
